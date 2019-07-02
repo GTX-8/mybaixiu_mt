@@ -1,6 +1,8 @@
 //引入express模块
 const express = require('express')
 const pageControllers = require('../controllers/pagesControllers.js')
+//引入post页面数据模板
+const postsControllers = require('../controllers/postsControllers.js')
 //封装路由模块
 const router = express.Router()
 //前台页面的请求显示
@@ -20,6 +22,9 @@ router.get('/',pageControllers.getIndexPage)
 .get('/admin/settings',pageControllers.getSettingsPage)
 .get('/admin/slides',pageControllers.getSlidesPage)
 .get('/admin/users',pageControllers.getUsersPage)
+
+//后端posts页面的请求
+.get('/getPostsList',postsControllers.getPostsList)
 
 
 
