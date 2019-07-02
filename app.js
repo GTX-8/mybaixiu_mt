@@ -2,6 +2,7 @@
 const express = require('express')
 const router = require('./router/index.js')
 const ejs = require('ejs')
+const bodyparser = require('body-parser')
 const app = express()
 //添加对指定端口的监听
 app.listen(3000,()=>{
@@ -14,6 +15,7 @@ app.set('views','views')
 //添加静态资源的托管
 app.use('/assets',express.static('assets'))
 app.use('/uploads',express.static('uploads'))
-
+app.use(bodyparser.urlencoded({extened:false}))
+app.use(bodyparser.json())
 
 app.use(router)

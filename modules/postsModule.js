@@ -8,11 +8,12 @@ const connection = mysql.createConnection({
     dateStrings: true //将读取到的时间以字符串展示
 })
 module.exports = {
-    getPostsList(callback) {
+    getPostsList(params,callback) {
         let sql = `select posts.*, users.id,users.nickname,categories.name
         from posts
         inner join users on posts.user_id = users.id
-        inner join categories on posts.category_id = categories.id`
+        inner join categories on posts.category_id = categories.id
+        limit ${(params.pagenum-1)*params.pagesize},${params.pagesize}`
         connection.query(sql,(err,data)=>{
             if(err) return callback(err)
             callback(null,data)

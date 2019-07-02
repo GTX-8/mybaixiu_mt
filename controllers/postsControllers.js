@@ -2,7 +2,9 @@
 const postsModule = require('../modules/postsModule.js')
 module.exports = {
     getPostsList(req,res){
-        postsModule.getPostsList((err,data)=>{
+        let page = req.query
+        console.log(req.query)
+        postsModule.getPostsList(page,(err,data)=>{
             if(err) return res.json({
                 code:400,
                 msg:'获取数据失败'
