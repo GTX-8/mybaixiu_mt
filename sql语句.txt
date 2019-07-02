@@ -1,0 +1,12 @@
+select posts.*,users.id,users.nickname,categories.name
+from posts
+inner join users on posts.user_id = users.id
+inner join categories on posts.category_id = categories.id
+
+
+
+
+select posts.id,posts.slug,posts.title,posts.feature,posts.created,posts.content,posts.`status`,users.id,users.nickname,categories.name
+from posts
+inner join users on posts.user_id = users.id
+inner join categories on posts.category_id = categories.id
