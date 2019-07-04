@@ -3,6 +3,8 @@ const express = require('express')
 const pageControllers = require('../controllers/pagesControllers.js')
 //引入post页面数据模板
 const postsControllers = require('../controllers/postsControllers.js')
+//引入筛选数据模块
+const cateControllers = require('../controllers/cateControllers.js')
 //封装路由模块
 const router = express.Router()
 //前台页面的请求显示
@@ -25,6 +27,7 @@ router.get('/',pageControllers.getIndexPage)
 
 //后端posts页面的请求
 .get('/getPostsList',postsControllers.getPostsList)
+.get('/getCateList',cateControllers.getCateList)
 
 
 

@@ -1,14 +1,33 @@
 $(()=>{
+    //每页显示的数据
     var pagenum = 1
-    var pagesize = 1
-    init()
-    function init(){
+    //每页显示的数量
+    var pagesize = 4
+    init({})
+    //实现用户数据的筛选 使用委托事件
+    $('.btn-search').on("click",function(event){
+        event.preventDefault()
+        //定义query,目的是获取用户数据(删选的value值)
+        var query={}
+        if($('.cateSelector').val()!='all'){
+            query.cate=$('.cateSelector').val()
+        }
+       if($('.statuSelector').val()!='all'){
+           query.statu = $('.statuSelector').val()
+       }
+       //发起请求
+       init(query)
+    })
+    function init(query){
         $.ajax({
             type: "get",
             url: "/getPostsList",
             data:{
                 pagenum:pagenum,
-                pagesize:pagesize
+                pagesize:pagesize,
+                //展开运算符,可以将一个对象的具体属性进行展开,展开为一组一组的键值对
+                //将query中用户筛选获取的数据传递给后端进行判断
+                ...query
             },
             dataType: "json",
             success: function (res) {
@@ -21,6 +40,21 @@ $(()=>{
             }
         });
     }
+    //在页面渲染筛选条件
+    ;(function(){
+        $.ajax({
+            type: "get",
+            url: "/getCateList",
+            success: function (res) {
+                var htmlStr = `<option value="all">所有分类</option>`
+                // 遍历获取到数据,和模板字符串混合使用
+                for(var i=0;i<res.data.length;i++){
+                    htmlStr+=`<option value="${res.data[i].id}">${res.data[i].name}</option>`
+                }
+                $('.cateSelector').html(htmlStr)
+            }
+        });
+    })();
     //实现分页
     function setPage(count) {
         $(".pagination").bootstrapPaginator({
