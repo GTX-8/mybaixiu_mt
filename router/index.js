@@ -28,6 +28,7 @@ router.get('/',pageControllers.getIndexPage)
 //后端posts页面的请求
 .get('/getPostsList',postsControllers.getPostsList)
 .get('/getCateList',cateControllers.getCateList)
+.get('/delPostList',postsControllers.delPostList)
 
 
 

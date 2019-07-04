@@ -1,14 +1,15 @@
 $(()=>{
-    //每页显示的数据
+    //每页显示的当前页码
     var pagenum = 1
     //每页显示的数量
-    var pagesize = 4
+    var pagesize = 1
+    //定义query,目的是获取用户数据(删选的value值)
+    var query={}
     init({})
-    //实现用户数据的筛选 使用委托事件
+    //实现用户数据的筛选
     $('.btn-search').on("click",function(event){
         event.preventDefault()
-        //定义query,目的是获取用户数据(删选的value值)
-        var query={}
+        
         if($('.cateSelector').val()!='all'){
             query.cate=$('.cateSelector').val()
         }
@@ -17,6 +18,24 @@ $(()=>{
        }
        //发起请求
        init(query)
+    })
+    //实现数据的删除,使用事件委托
+    $('tbody').on('click','.btn-del',function(){
+        console.log(111)
+        var id = $(this).data('id')
+        console.log(id)
+        $.ajax({
+            type: "get",
+            url: "/delPostList",
+            data: {id:id},
+            success: function (res) {
+                console.log(res)
+                if(res.code==200){
+                    alert('数据删除成功!')
+                    init()
+                }
+            }
+        });
     })
     function init(query){
         $.ajax({
@@ -69,7 +88,7 @@ $(()=>{
                 // 我们发现，这个page就是当前的合理页码值，我们只需要将全局的pagenum重置，并且重新获取数据就可以了
                 pagenum = page
                 // 重新获取数据
-                init()
+                init(query)
             }
         })
     }

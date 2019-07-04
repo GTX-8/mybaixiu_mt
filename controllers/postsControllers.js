@@ -14,5 +14,19 @@ module.exports = {
                 data:result
             })
         })
+    },
+    delPostList(req,res){
+        let id = req.query.id
+        postsModule.delPostList(id,(err,data)=>{
+            if(err) return res.json({
+                code:400,
+                msg:'删除数据失败'
+            })
+            res.json({
+                code:200,
+                msg:'删除数据成功',
+                data:data
+            })
+        })
     }
 }

@@ -16,7 +16,6 @@ module.exports = {
     * */
 
     getPostsList(params,callback) {
-        console.log(params)
         let sql = `select posts.*, users.id uid,users.nickname,categories.name
         from posts
         inner join users on posts.user_id = users.id
@@ -32,11 +31,23 @@ module.exports = {
         limit ${(params.pagenum-1)*params.pagesize},${params.pagesize}`
         connection.query(sql,(err,result)=>{
             if(err) return callback(err)
-            sql = 'select count(*) cnt from posts'
+            sql = `select count(*) cnt,posts.*, users.id uid,users.nickname,categories.name from posts
+                inner join users on posts.user_id = users.id
+                inner join categories on posts.category_id = categories.id
+                where 1=1 `
+                if(params.cate) sql+=` and posts.category_id=${params.cate}`
+                if(params.statu)sql+=` and posts.status='${params.statu}'`
             connection.query(sql,(err1,data1)=>{
                 if(err1) return callback(err1)
                 callback(null,{result:result,total:data1[0].cnt})
             })
+        })
+    },
+    delPostList(id,callback){
+        let sql = 'delete from posts where id='+id
+        connection.query(sql,(err,data)=>{
+            if(err) return callback(err)
+            callback(null)
         })
     }
 }
