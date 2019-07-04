@@ -10,7 +10,7 @@ $(function(){
         menu_posts.addClass('in')
         menu_posts.attr('aria-expanded',true)
     }
-    var menu_settings = $('menu-settings')
+    var menu_settings = $('#menu-settings')
     if(routerName=='nav-menus'||routerName=='slides'||routerName=='settings'){
         menu_settings.addClass('in')
         menu_settings.attr('aria-expanded',true)

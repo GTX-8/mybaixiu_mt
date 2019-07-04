@@ -14,9 +14,13 @@ module.exports = {
         inner join users on posts.user_id = users.id
         inner join categories on posts.category_id = categories.id
         limit ${(params.pagenum-1)*params.pagesize},${params.pagesize}`
-        connection.query(sql,(err,data)=>{
+        connection.query(sql,(err,result)=>{
             if(err) return callback(err)
-            callback(null,data)
+            sql = 'select count(*) cnt from posts'
+            connection.query(sql,(err1,data1)=>{
+                if(err1) return callback(err1)
+                callback(null,{result:result,total:data1[0].cnt})
+            })
         })
     }
 }
