@@ -40,8 +40,7 @@
           <div class="form-group">
             <label for="category">所属分类</label>
             <select id="category" class="form-control" name="category">
-              <option value="1">未分类</option>
-              <option value="2">潮生活</option>
+              
             </select>
           </div>
           <div class="form-group">
@@ -56,7 +55,7 @@
             </select>
           </div>
           <div class="form-group">
-            <button class="btn btn-primary" type="submit">保存</button>
+            <button class="btn btn-primary btnSave" type="submit">保存</button>
           </div>
         </div>
       </form>
@@ -65,3 +64,5 @@
 
   <%- include('./layouts/admin_aside.ejs')%>
   <%- include('./layouts/admin_footer.ejs')%>
+  <script src="/assets/vendors/ckeditor/ckeditor.js"></script>
+  <script src="/assets/js/post-add.js"></script>

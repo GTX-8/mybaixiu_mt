@@ -6,6 +6,7 @@ const postsControllers = require('../controllers/postsControllers.js')
 //引入筛选数据模块
 const cateControllers = require('../controllers/cateControllers.js')
 //封装路由模块
+const uploadFileControllers = require('../controllers/uploadFileControllers.js')
 const router = express.Router()
 //前台页面的请求显示
 router.get('/',pageControllers.getIndexPage)
@@ -29,6 +30,7 @@ router.get('/',pageControllers.getIndexPage)
 .get('/getPostsList',postsControllers.getPostsList)
 .get('/getCateList',cateControllers.getCateList)
 .get('/delPostList',postsControllers.delPostList)
+.post('/uploadFile',uploadFileControllers.uploadFile)
 
 
 

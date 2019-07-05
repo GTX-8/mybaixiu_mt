@@ -9,12 +9,12 @@ $(()=>{
     //实现用户数据的筛选
     $('.btn-search').on("click",function(event){
         event.preventDefault()
-        
+        query = {}
         if($('.cateSelector').val()!='all'){
-            query.cate=$('.cateSelector').val()
+            query.cate=$('.cateSelector').val() //1
         }
        if($('.statuSelector').val()!='all'){
-           query.statu = $('.statuSelector').val()
+           query.statu = $('.statuSelector').val() //drafted
        }
        //发起请求
        init(query)
@@ -47,6 +47,7 @@ $(()=>{
                 //展开运算符,可以将一个对象的具体属性进行展开,展开为一组一组的键值对
                 //将query中用户筛选获取的数据传递给后端进行判断
                 ...query
+                
             },
             dataType: "json",
             success: function (res) {

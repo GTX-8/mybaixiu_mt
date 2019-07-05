@@ -3,6 +3,7 @@ const postsModule = require('../modules/postsModule.js')
 module.exports = {
     getPostsList(req,res){
         let obj = req.query
+        console.log(obj)
         postsModule.getPostsList(obj,(err,result)=>{
             if(err) return res.json({
                 code:400,
