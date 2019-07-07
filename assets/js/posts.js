@@ -21,21 +21,21 @@ $(()=>{
     })
     //实现数据的删除,使用事件委托
     $('tbody').on('click','.btn-del',function(){
-        console.log(111)
-        var id = $(this).data('id')
-        console.log(id)
-        $.ajax({
-            type: "get",
-            url: "/delPostList",
-            data: {id:id},
-            success: function (res) {
-                console.log(res)
-                if(res.code==200){
-                    alert('数据删除成功!')
-                    init()
+        if(window.confirm('请问你是否真的需要删除?')){
+            var id = $(this).data('id')
+            $.ajax({
+                type: "get",
+                url: "/delPostList",
+                data: {id:id},
+                success: function (res) {
+                    console.log(res)
+                    if(res.code==200){
+                        alert('数据删除成功!')
+                        init()
+                    }
                 }
-            }
-        });
+            });
+        }
     })
     function init(query){
         $.ajax({

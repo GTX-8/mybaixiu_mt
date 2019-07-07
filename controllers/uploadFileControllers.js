@@ -18,6 +18,7 @@ module.exports = {
         // 2.field:字段: 传递的普通键值对,它是一个对象
         // 3.files:这是文件上传成功后的相关信息--如存储信息
         form.parse(req,(err,fields,files)=>{
+            console.log(files)
             if(err) return res.json({code:400,msg:'文件上传失败'})
             //path.basename是path模块中的方法 失去文件链接的最后一部分
             let filename = path.basename(files.img.path)
