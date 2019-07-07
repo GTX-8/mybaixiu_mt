@@ -12,7 +12,7 @@ $(function(){
                     return false
                 }
                 if(password.trim().length==0){
-                    $('.alert-danger>span').text('请输入正确的邮箱号')
+                    $('.alert-danger>span').text('请输入正确的密码')
                     $('.alert-danger').fadeIn(500).delay(2000).fadeOut(500)
                     return false
                 }
@@ -20,8 +20,12 @@ $(function(){
             data: $(".loginform").serialize(),
             dataType: "json",
             success: function (res) {
+                console.log(res)
                if(res.code==200){
                    location.href='/admin'
+               }else{
+                $('.alert-danger>span').text(res.msg)
+                $('.alert-danger').fadeIn(500).delay(2000).fadeOut(500)
                }
             }
         });

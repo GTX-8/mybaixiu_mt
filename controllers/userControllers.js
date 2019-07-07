@@ -14,9 +14,8 @@ module.exports = {
                 if (data) {
                     if (data.password == obj.password) {
                         //将登录成功的状态写入coolkie
-                        res.writeHead(200,{
-                            'Set-Cookie':'islogin=true&id='+data.id
-                        })
+                        req.session.islogin='true'
+                        req.session.currentUser=data
                         res.end(JSON.stringify({code: 200,
                             msg: '登录成功'
                         })
