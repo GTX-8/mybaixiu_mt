@@ -40,11 +40,6 @@ app.use('/assets',express.static('assets'))
 app.use('/uploads',express.static('uploads'))
 //下面这个中间件,在每次请求时都会经过
 app.use(function(req,res,next){
-    console.log(req.session)
-
-    console.log(!req.url.includes('/admin') , req.url.indexOf('/admin') == -1);
-    
-    console.log("-------------------------------------------------------------------------------------------")
     if(req.session.islogin && req.session.islogin=='true' || req.url=='/admin/login' || req.url.indexOf('/admin') == -1){
         next()
     }else{

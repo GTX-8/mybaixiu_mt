@@ -7,14 +7,16 @@
   <div class="main">
       <%- include('./layouts/admin_navbar.ejs')%>
     <div class="container-fluid">
+      
       <div class="page-title">
         <h1>写文章</h1>
       </div>
       <!-- 有错误信息时展示 -->
-      <!-- <div class="alert alert-danger">
-        <strong>错误！</strong>发生XXX错误
-      </div> -->
+      <div class="alert alert-danger" style="display:none">
+        <strong>错误！</strong><span></span>
+      </div>
       <form class="row">
+          <input type="hidden" name="id">
         <div class="col-md-9">
           <div class="form-group">
             <label for="title">标题</label>
@@ -67,4 +69,5 @@
   <%- include('./layouts/admin_aside.ejs')%>
   <%- include('./layouts/admin_footer.ejs')%>
   <script src="/assets/vendors/ckeditor/ckeditor.js"></script>
+  <script src="/assets/js/common.js"></script>
   <script src="/assets/js/post-add.js"></script>

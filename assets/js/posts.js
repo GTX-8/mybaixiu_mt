@@ -2,7 +2,7 @@ $(()=>{
     //每页显示的当前页码
     var pagenum = 1
     //每页显示的数量
-    var pagesize = 1
+    var pagesize = 4
     //定义query,目的是获取用户数据(删选的value值)
     var query={}
     init({})
@@ -93,4 +93,5 @@ $(()=>{
             }
         })
     }
+
 })

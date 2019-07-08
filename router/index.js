@@ -38,6 +38,8 @@ router.get('/',pageControllers.getIndexPage)
 .post('/uploadFile',uploadFileControllers.uploadFile)
 //向后台发送文本框里面所有内容
 .post('/addpost',addPostControllers.addpost)
+.post('/editorPost',addPostControllers.editorPost)
+.get('/getPostById',postsControllers.getPostById)
 
 
 

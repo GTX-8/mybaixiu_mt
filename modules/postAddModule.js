@@ -13,5 +13,13 @@ module.exports = {
             if (err) return callback(err)
             callback(null)
         })
+    },
+    //文章的编辑
+    editorPost(obj,callback){
+        let sql = `update posts set ? where id = ?`
+        connection.query(sql,[obj,obj.id],(err,results)=>{
+            if(err) return callback(null)
+            callback(null,results)
+        })
     }
 }

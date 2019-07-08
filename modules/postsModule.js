@@ -6,7 +6,7 @@ module.exports = {
     *pagesize:每页记录数
     *query:用户搜索条件   query.cate:分类条件  query.statu状态条件,约定query是一个对象,里面有两个属性
     * */
-
+    //获取数据库中所有数据
     getPostsList(params,callback) {
         let sql = `select posts.*, users.id uid,users.nickname,categories.name
         from posts
@@ -35,11 +35,19 @@ module.exports = {
             })
         })
     },
+    //删除数据库中一条数据
     delPostList(id,callback){
         let sql = 'delete from posts where id='+id
         connection.query(sql,(err,data)=>{
             if(err) return callback(err)
             callback(null)
+        })
+    },
+    getPostById(id,callback){
+        let sql=`select * from posts where id=`+id
+        connection.query(sql,(err,results)=>{
+            if(err) return callback(err)
+            callback(null,results[0])
         })
     }
 }

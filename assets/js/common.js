@@ -13,5 +13,23 @@ var utils = {
             routerName = href.substring(href.lastIndexOf('/') + 1)
         }
         return routerName
+    },
+    //获取编辑按钮所在数据的id
+    getEditorId:(str)=>{
+        var obj = {}
+        // str=?id=324
+        // 去除?号
+        str = str.substring(1) //id=324
+        // 对字符串进行分割
+        var temp = str.split('&')
+        //遍历 再次进行分割
+        for(i=0;i<temp.length;i++){
+            //id = 2 ['id''324']
+            var arr = temp[i].split('=')
+            // 生成对象的键值对
+            // {id:324}
+            obj[arr[0]]=arr[1]
+        }
+        return obj
     }
 }
